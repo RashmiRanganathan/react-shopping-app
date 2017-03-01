@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>React App</title>
+  <style>
+    body {
+      background-color: #2874f0;
+      margin: 0;
+      z-index: 10;
+    }
+    
+    h1,
+    h2,
+    p,
+    ul,
+    li {
+      font-family: Cambria, Cochin, Georgia, Times, Times New Roman, serif
+    }
+    
+    h1.shop {
+      color: pink;
+      font-family: fantasy;
+      font-size: 24px;
+      padding: 5px;
+      margin-left: 10px;
+      text-align: center;
+      border-bottom: 2px dotted lightpink;
+      border-right: 2px dotted lightpink;
+      border-radius: 10px;
+      display: inline;
+    }
+    
+    .carousel {
+      display: table;
+      margin: 0 auto;
+    }
+    
+    ul.header {
+      margin: 0;
+      margin-top: 10px;
+    }
+    
+    ul.header li {
+      display: inline;
+      list-style-type: none;
+      margin: 0 10px;
+      font-size: 20px;
+    }
+    
+    ul.header li a {
+      color: #FFF;
+      text-decoration: none;
+      padding: 10px;
+      display: inline-block;
+    }
+    
+    .content {
+      padding: 20px;
+      background-color: #fff;
+      margin: 0 0 0 300px;
+    }
+    
+    .content li {
+      margin-bottom: 10px;
+    }
+    
+    .active {
+      color: yellow !important;
+    }
+    
+    .cart {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin: 20px;
+      background-color: #ffe;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .23), inset 1px 1px 0 0 hsla(0, 0%, 100%, .2);
+      text-align: center;
+      border-radius: 2px;
+      padding: 5px;
+    }
+    
+    .cart img {
+      width: 30px;
+      height: 25px;
+      padding: 0px 5px;
+      vertical-align: middle
+    }
+    
+    #head {
+      position: fixed;
+      z-index: 10;
+      width: 100%;
+      padding-top: 20px;
+      background-color: #2874f0;
+    }
+    
+    #filter {
+      float: left;
+      position: relative;
+      width: 290px;
+      height: 800px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .23), inset 1px 1px 0 0 hsla(0, 0%, 100%, .2);
+    }
+    
+    #container {
+      padding: 5px;
+      padding-top: 120px;
+      background-color: #f3f3f3;
+    }
+    
+    .footer {
+      padding: 10px;
+      text-align: center;
+    }
+    
+    .showing,
+    h2 {
+      display: inline-block;
+      color: black;
+      padding: 0 2px;
+      margin-bottom: 10px;
+    }
+    
+    .product-preview {
+      border-bottom: 1px solid grey;
+      position: relative;
+      background-color: #fff;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .23), inset 1px 1px 0 0 hsla(0, 0%, 100%, .2);
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+    }
+    
+    .product-preview img {
+      width: 100px;
+      padding-right: 15px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    
+    .other-details {
+      margin-left: 120px !important;
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 12px;
+      vertical-align: top;
+      margin-top: 10px;
+    }
+    
+    .other-details .title {
+      margin-top: 0px;
+      font-size: 18px;
+    }
+    
+    .item-in-cart span.count {
+      border-radius: 3px;
+      background-color: lightgray;
+      padding: 4px 8px;
+      text-align: center;
+    }
+    
+    .price {
+      font-size: 24px;
+      float: right;
+      margin-top: 10px;
+    }
+    
+    .rating {
+      background-color: green;
+      color: white;
+      padding: 4px;
+      display: inline;
+      border-radius: 5px;
+    }
+    
+    .add-to-cart,
+    .buy {
+      padding: 14px 8px;
+      width: 150px;
+      text-align: center;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+      border-radius: 2px;
+      border: none;
+      font-size: 14px;
+      outline: none;
+      margin: 5px;
+      font-weight: 500;
+    }
+    
+    .add-to-cart {
+      background: #ff9f00;
+    }
+    
+    .buy {
+      background: #fb641b;
+    }
+    
+    .overflow-cart {
+      margin-top: 2px;
+      position: absolute;
+      top: 40px;
+      right: 3px;
+      background-color: #ffe;
+      width: 500px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+    }
+    
+    .item-in-cart {
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .2);
+      padding: 5px 10px;
+    }
+    
+    .item-in-cart img {
+      width: 2%;
+      float: left;
+    }
+    
+    .price-in-cart {
+      float: right
+    }
+    
+    .title-in-cart {
+      text-align: left;
+    }
+    
+    .head-in-cart {
+      background: #4b4c51;
+      color: #fff;
+      padding: 6px 10px;
+    }
+    
+    .head-in-cart span , .remove-item{
+      vertical-align: middle;
+      line-height: 14px;
+      float: right;
+      width: 14px;
+      height: 14px;
+    }
+     .head-in-cart span:hover, .remove-item:hover {
+       color:lightcoral
+     }
+  </style>
+</head>
+
+<body>
+  <div id="root">
+  </div>
+</body>
+
+</html>
